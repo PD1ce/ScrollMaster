@@ -11,14 +11,18 @@ import SpriteKit
 
 class HorizontalScene: SKScene {
     
-    let player = SKSpriteNode(imageNamed: "MinecartTemp")
+    var parentVC: UIViewController!
+    var player: SKSpriteNode!
     var tracks: NSMutableArray!
     let horizontalPositions = [CGFloat(128.0), CGFloat(256.0), CGFloat(384.0), CGFloat(512.0), CGFloat(640.0)] //Track 0, 1, 2, 3, 4
     var playerPosition: Int! // Subclass player and make this a property
     
+    var tempSwitchButton: UIButton!
+    
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
-       
+        player = SKSpriteNode(imageNamed: "MinecartTemp")
+        
         tracks = NSMutableArray()
         for var i = 0; i < 5; i++ {
             let track = SKSpriteNode(color: UIColor(red: 0.644, green: 0.164, blue: 0.164, alpha: 1.0), size: CGSize(width: self.frame.width, height: 32.0))
@@ -45,10 +49,11 @@ class HorizontalScene: SKScene {
         
         runAction(SKAction.repeatActionForever(
             SKAction.sequence([
-                SKAction.runBlock(addCart),
+                SKAction.runBlock(addCartHor),
                 SKAction.waitForDuration(1.0)
             ])
         ))
+        
         
         // Not Used in this scene
         let swipeLeft = UISwipeGestureRecognizer(target: self, action: "swipeLeft:")
@@ -69,6 +74,13 @@ class HorizontalScene: SKScene {
         let tapGesture = UITapGestureRecognizer(target: self, action: "tapped:")
         self.view?.addGestureRecognizer(tapGesture)
         
+        tempSwitchButton = UIButton(frame: CGRect(x: 500, y: 100, width: 200, height: 100))
+        tempSwitchButton.setTit
+        tempSwitchButton.titleLabel?.text = "Switch!"
+        tempSwitchButton.addTarget(self, action: "switchButtonTapped", forControlEvents: .TouchUpInside)
+        tempSwitchButton.layer.zPosition = 100
+        self.view?.addSubview(tempSwitchButton)
+        
     }
     
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
@@ -83,6 +95,12 @@ class HorizontalScene: SKScene {
         /* Called before each frame is rendered */
     }
     
+    func switchButtonTapped() {
+        println("switch tapped")
+        let vertScene = TopDownScene(size: parentVC.view.bounds.size)
+        vertScene.scaleMode = .ResizeFill
+        self.view?.presentScene(vertScene)
+    }
     
     func swipeUp(gr: UISwipeGestureRecognizer) {
         println("Swipe Up")
@@ -118,7 +136,7 @@ class HorizontalScene: SKScene {
         playerPosition! -= 1 // Fix this
     }
     
-    func addCart() {
+    func addCartHor() {
         let cart = SKSpriteNode(imageNamed: "MinecartTemp")
         cart.size = CGSize(width: 128.0, height: 96.0)
         

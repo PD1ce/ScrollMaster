@@ -12,19 +12,22 @@ import UIKit
 
 class TopDownScene: SKScene {
     
-    let player = SKSpriteNode(imageNamed: "MinecartTemp")
+    var parentVC: UIViewController!
+    var player: SKSpriteNode!
     var tracks: NSMutableArray!
-    let horizontalPositions = [CGFloat(128.0), CGFloat(256.0), CGFloat(384.0), CGFloat(512.0), CGFloat(640.0)] //Track 0, 1, 2, 3, 4
+    let verticalPositions = [CGFloat(256.0), CGFloat(384.0), CGFloat(512.0), CGFloat(640.0), CGFloat(768.0)] //Track 0, 1, 2, 3, 4
     var playerPosition: Int! // Subclass player and make this a property
+    var tempSwitchButton: UIButton!
     
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
         
+        player = SKSpriteNode(imageNamed: "MinecartTemp")
         tracks = NSMutableArray()
         for var i = 0; i < 5; i++ {
-            let track = SKSpriteNode(color: UIColor(red: 0.644, green: 0.164, blue: 0.164, alpha: 1.0), size: CGSize(width: self.frame.width, height: 32.0))
-            let realY = CGFloat((i + 1) * 128 - 32)
-            track.position = CGPoint(x: CGRectGetMidX(self.frame), y: realY)
+            let track = SKSpriteNode(color: UIColor(red: 0.644, green: 0.164, blue: 0.164, alpha: 1.0), size: CGSize(width: 32.0, height: self.frame.width))
+            let realX = CGFloat((i + 1) * 128 + 128)
+            track.position = CGPoint(x: realX, y: CGRectGetMidY(self.frame))
             println("Track \(i) X: \(track.position.x), Track \(i) Y: \(track.position.y)")
             self.addChild(track)
             tracks.addObject(track)
@@ -34,7 +37,7 @@ class TopDownScene: SKScene {
         
         backgroundColor = SKColor(red: 0.3, green: 0.738, blue: 0.2, alpha: 1.0)
         player.size = CGSize(width: 128.0, height: 96.0)
-        player.position = CGPoint(x: CGFloat(128.0), y: CGRectGetMidY(self.frame))
+        player.position = CGPoint(x: CGRectGetMidX(self.frame), y: 96.0)
         self.addChild(player)
         /*
         runAction(SKAction.repeatActionForever(
@@ -46,29 +49,30 @@ class TopDownScene: SKScene {
         
         runAction(SKAction.repeatActionForever(
             SKAction.sequence([
-                SKAction.runBlock(addCart),
+                SKAction.runBlock(addCartVert),
                 SKAction.waitForDuration(1.0)
                 ])
             ))
         
-        // Not Used in this scene
         let swipeLeft = UISwipeGestureRecognizer(target: self, action: "swipeLeft:")
         swipeLeft.direction = (UISwipeGestureRecognizerDirection.Left)
-        //self.view?.addGestureRecognizer(swipeLeft)
-        // Not Used in this scene
+        self.view?.addGestureRecognizer(swipeLeft)
         let swipeRight = UISwipeGestureRecognizer(target: self, action: "swipeRight:")
         swipeRight.direction = (UISwipeGestureRecognizerDirection.Right)
-        //self.view?.addGestureRecognizer(swipeRight)
+        self.view?.addGestureRecognizer(swipeRight)
         
+        // Not Used in this scene
         let swipeUp = UISwipeGestureRecognizer(target: self, action: "swipeUp:")
         swipeUp.direction = UISwipeGestureRecognizerDirection.Up
-        self.view?.addGestureRecognizer(swipeUp)
+        //self.view?.addGestureRecognizer(swipeUp)
+        // Not Used in this scene
         let swipeDown = UISwipeGestureRecognizer(target: self, action: "swipeDown:")
         swipeDown.direction = UISwipeGestureRecognizerDirection.Down
-        self.view?.addGestureRecognizer(swipeDown)
+        //self.view?.addGestureRecognizer(swipeDown)
         
         let tapGesture = UITapGestureRecognizer(target: self, action: "tapped:")
         self.view?.addGestureRecognizer(tapGesture)
+        
         
     }
     
@@ -87,50 +91,50 @@ class TopDownScene: SKScene {
     
     func swipeUp(gr: UISwipeGestureRecognizer) {
         println("Swipe Up")
-        if playerPosition != 4 {
-            moveUp()
-        }
     }
     func swipeDown(gr: UISwipeGestureRecognizer) {
         println("Swipe Down")
-        if playerPosition != 0 {
-            moveDown()
-        }
     }
     func swipeLeft(gr: UISwipeGestureRecognizer) {
         println("Swipe Left")
+        if playerPosition != 0 {
+            moveLeft()
+        }
     }
     func swipeRight(gr: UISwipeGestureRecognizer) {
         println("Swipe Right")
+        if playerPosition != 4 {
+            moveRight()
+        }
     }
     
     func tapped(gr: UITapGestureRecognizer) {
         println("Tapped")
     }
     
-    func moveUp() {
-        let actionMove = SKAction.moveTo(CGPoint(x: player.position.x, y: horizontalPositions[playerPosition + 1]), duration: NSTimeInterval(0.5))
-        player.runAction(actionMove)
-        playerPosition! += 1 // Fix this
-    }
-    func moveDown() {
-        let actionMove = SKAction.moveTo(CGPoint(x: player.position.x, y: horizontalPositions[playerPosition - 1]), duration: NSTimeInterval(0.5))
+    func moveLeft() {
+        let actionMove = SKAction.moveTo(CGPoint(x: verticalPositions[playerPosition - 1], y: player.position.y), duration: NSTimeInterval(0.5))
         player.runAction(actionMove)
         playerPosition! -= 1 // Fix this
     }
+    func moveRight() {
+        let actionMove = SKAction.moveTo(CGPoint(x: verticalPositions[playerPosition + 1], y: player.position.y), duration: NSTimeInterval(0.5))
+        player.runAction(actionMove)
+        playerPosition! += 1 // Fix this
+    }
     
-    func addCart() {
+    func addCartVert() {
         let cart = SKSpriteNode(imageNamed: "MinecartTemp")
         cart.size = CGSize(width: 128.0, height: 96.0)
         
-        let actualY = CGFloat(((rand() % 5) + 1) * 128)
+        let actualX = CGFloat(((rand() % 5) + 1) * 128 + 128)
         //let actualY = CGFloat(96.0) //Will be random
-        cart.position = CGPoint(x: self.frame.size.width + cart.size.width/2, y: actualY)
+        cart.position = CGPoint(x: actualX, y: self.frame.size.height + cart.size.height/2)
         addChild(cart)
-        println("Cart Y: \(cart.position.y)")
+        println("Cart X: \(cart.position.x)")
         let cartDuration = CGFloat((rand() % 2) + 3) // Will be random
         
-        let actionMove = SKAction.moveTo(CGPoint(x: -cart.size.width/2, y: actualY), duration: NSTimeInterval(cartDuration))
+        let actionMove = SKAction.moveTo(CGPoint(x: actualX, y: -cart.size.width/2), duration: NSTimeInterval(cartDuration))
         let actionMoveDone = SKAction.removeFromParent()
         cart.runAction(SKAction.sequence([actionMove, actionMoveDone]))
         
