@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		4AB83DF21AAEA2D4008F109F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB83DF11AAEA2D4008F109F /* AppDelegate.swift */; };
-		4AB83DF41AAEA2D4008F109F /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 4AB83DF31AAEA2D4008F109F /* GameScene.sks */; };
 		4AB83DF61AAEA2D4008F109F /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB83DF51AAEA2D4008F109F /* GameScene.swift */; };
 		4AB83DF81AAEA2D4008F109F /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB83DF71AAEA2D4008F109F /* GameViewController.swift */; };
 		4AB83DFB1AAEA2D4008F109F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4AB83DF91AAEA2D4008F109F /* Main.storyboard */; };
@@ -31,7 +30,6 @@
 		4AB83DEC1AAEA2D4008F109F /* ScrollMaster.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScrollMaster.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AB83DF01AAEA2D4008F109F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4AB83DF11AAEA2D4008F109F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		4AB83DF31AAEA2D4008F109F /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
 		4AB83DF51AAEA2D4008F109F /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		4AB83DF71AAEA2D4008F109F /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		4AB83DFA1AAEA2D4008F109F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -82,7 +80,6 @@
 			isa = PBXGroup;
 			children = (
 				4AB83DF11AAEA2D4008F109F /* AppDelegate.swift */,
-				4AB83DF31AAEA2D4008F109F /* GameScene.sks */,
 				4AB83DF51AAEA2D4008F109F /* GameScene.swift */,
 				4AB83DF71AAEA2D4008F109F /* GameViewController.swift */,
 				4AB83DF91AAEA2D4008F109F /* Main.storyboard */,
@@ -200,7 +197,6 @@
 			files = (
 				4AB83E001AAEA2D4008F109F /* LaunchScreen.xib in Resources */,
 				4AB83DFD1AAEA2D4008F109F /* Images.xcassets in Resources */,
-				4AB83DF41AAEA2D4008F109F /* GameScene.sks in Resources */,
 				4AB83DFB1AAEA2D4008F109F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -415,6 +411,7 @@
 				4AB83E111AAEA2D5008F109F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4AB83E121AAEA2D5008F109F /* Build configuration list for PBXNativeTarget "ScrollMasterTests" */ = {
 			isa = XCConfigurationList;
@@ -423,6 +420,7 @@
 				4AB83E141AAEA2D5008F109F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>C7CCE46E-2ED9-4F79-882C-B4274C29B213</string>
+	<key>IDESourceControlProjectName</key>
+	<string>ScrollMaster</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>369CBD6318B162D5F12AAB04D24BFB979BC511C6</key>
+		<string>https://github.com/PD1ce/ScrollMaster.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>ScrollMaster.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>369CBD6318B162D5F12AAB04D24BFB979BC511C6</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/PD1ce/ScrollMaster.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>369CBD6318B162D5F12AAB04D24BFB979BC511C6</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>369CBD6318B162D5F12AAB04D24BFB979BC511C6</string>
+			<key>IDESourceControlWCCName</key>
+			<string>ScrollMaster</string>
+		</dict>
+	</array>
+</dict>
+</plist>
