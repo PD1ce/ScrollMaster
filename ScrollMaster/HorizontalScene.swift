@@ -1,5 +1,5 @@
 //
-//  GameScene.swift
+//  HorizontalScene.swift
 //  ScrollMaster
 //
 //  Created by Philip Deisinger on 3/9/15.
@@ -9,12 +9,12 @@
 import UIKit
 import SpriteKit
 
-class GameScene: SKScene {
+class HorizontalScene: SKScene {
     
     let player = SKSpriteNode(imageNamed: "MinecartTemp")
     var tracks: NSMutableArray!
     let horizontalPositions = [CGFloat(128.0), CGFloat(256.0), CGFloat(384.0), CGFloat(512.0), CGFloat(640.0)] //Track 0, 1, 2, 3, 4
-    var playerPosition: Int!
+    var playerPosition: Int! // Subclass player and make this a property
     
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
@@ -87,16 +87,13 @@ class GameScene: SKScene {
     func swipeUp(gr: UISwipeGestureRecognizer) {
         println("Swipe Up")
         if playerPosition != 4 {
-            //Executre MoveUp
-            player.position.y = horizontalPositions[playerPosition + 1]
-            playerPosition! += 1
+            moveUp()
         }
     }
     func swipeDown(gr: UISwipeGestureRecognizer) {
         println("Swipe Down")
         if playerPosition != 0 {
-            player.position.y = horizontalPositions[playerPosition - 1]
-            playerPosition! -= 1
+            moveDown()
         }
     }
     func swipeLeft(gr: UISwipeGestureRecognizer) {
@@ -111,7 +108,14 @@ class GameScene: SKScene {
     }
     
     func moveUp() {
-        
+        let actionMove = SKAction.moveTo(CGPoint(x: player.position.x, y: horizontalPositions[playerPosition + 1]), duration: NSTimeInterval(0.5))
+        player.runAction(actionMove)
+        playerPosition! += 1 // Fix this
+    }
+    func moveDown() {
+        let actionMove = SKAction.moveTo(CGPoint(x: player.position.x, y: horizontalPositions[playerPosition - 1]), duration: NSTimeInterval(0.5))
+        player.runAction(actionMove)
+        playerPosition! -= 1 // Fix this
     }
     
     func addCart() {

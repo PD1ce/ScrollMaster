@@ -13,7 +13,7 @@ class GameViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let scene = GameScene(size: view.bounds.size)
+        let scene = HorizontalScene(size: view.bounds.size)
         println("Height: \(view.bounds.size.height)")
         println("Width: \(view.bounds.size.width)")
         let skView = view as SKView
