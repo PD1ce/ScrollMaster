@@ -22,7 +22,7 @@ class GameViewController: UIViewController {
         vertScene = TopDownScene(size: view.bounds.size)
         println("Height: \(view.bounds.size.height)")
         println("Width: \(view.bounds.size.width)")
-        skView = view as SKView
+        skView = view as! SKView
         skView.showsFPS = true
         skView.showsNodeCount = true
         skView.ignoresSiblingOrder = true
@@ -40,6 +40,13 @@ class GameViewController: UIViewController {
         view.addSubview(startButton)
         */
         //skView.presentScene(horScene)
+        var timeToNextCart: Int = 30
+        var timeToNextViewCrystal: Int = 100
+        let player = Player()
+        player.pos = 2
+        horScene.player = player
+        horScene.timeToNextCart = timeToNextCart
+        horScene.timeToNextViewCrystal = timeToNextViewCrystal
         horScene.parentVC = self
         skView.presentScene(horScene)
     }
