@@ -213,10 +213,11 @@ class TopDownScene: SKScene {
         // Cart should have a vertical size, hor size, front size
         let randCart = Int(rand() % 3)
         let cartVelocity = CGFloat((rand() % 2) + 3)
-        let cart = Cart(velocity: cartVelocity, id: randCart, scene: 1)
+        let cart = Cart(id: randCart, scene: 1)
         
         cart.size = cart.topDownSize
         let trackPos = Int(rand() % 5)
+        cart.zPosition = CGFloat(trackPos)
         let actualX =  CGFloat((trackPos + 1) * 128 + 128)
         cart.trackPos = trackPos
         cart.position = CGPoint(x: actualX, y: self.frame.size.height + cart.size.height / 2)

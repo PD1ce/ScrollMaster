@@ -25,32 +25,35 @@ class Cart : SKSpriteNode {
     var frontTexture: SKTexture!
     
     //Feed in the id of the cart and based on that decide on the sizes
-    init(velocity: CGFloat, id: Int, scene: Int) {
+    init(id: Int, scene: Int) {
         //super.init(imageNamed: imageNamed)
         var texture = SKTexture()
-        self.velocity = velocity
         self.id = id
         switch id {
-            case 0: // Default
+            case 0: // Default Cart
                 horSize = CGSize(width: 128.0, height: 96.0)
                 topDownSize = CGSize(width: 96.0, height: 128.0)
                 horTexture = SKTexture(imageNamed: "minecartHor")
                 topDownTexture = SKTexture(imageNamed: "minecartTopDown")
-            case 1:
-                horSize = CGSize(width: 64.0, height: 64.0)
-                topDownSize = CGSize(width: 64.0, height: 64.0)
+                velocity = 3
+            case 1: // Sports Car
+                horSize = CGSize(width: 128.0, height: 96.0)
+                topDownSize = CGSize(width: 96.0, height: 128.0)
+                horTexture = SKTexture(imageNamed: "sportsCar")
+                topDownTexture = SKTexture(imageNamed: "sportsCar")
+                velocity = 15
+            case 2: // Big Mama
+                horSize = CGSize(width: 500.0, height: 400.0)
+                topDownSize = CGSize(width: 96.0, height: 500.0)
                 horTexture = SKTexture(imageNamed: "minecartHor")
                 topDownTexture = SKTexture(imageNamed: "minecartTopDown")
-            case 2:
-                horSize = CGSize(width: 200.0, height: 300.0)
-                topDownSize = CGSize(width: 96.0, height: 200.0)
-                horTexture = SKTexture(imageNamed: "minecartHor")
-                topDownTexture = SKTexture(imageNamed: "minecartTopDown")
+                velocity = 4
             default:
                 horSize = CGSize(width: 128.0, height: 96.0)
                 topDownSize = CGSize(width: 300.0, height: 96.0)
                 horTexture = SKTexture(imageNamed: "minecartHor")
                 topDownTexture = SKTexture(imageNamed: "minecartTopDown")
+                velocity = 5
         }
         switch scene {
             case 0:

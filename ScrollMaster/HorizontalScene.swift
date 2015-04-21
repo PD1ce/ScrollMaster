@@ -15,6 +15,7 @@ class HorizontalScene: SKScene {
     var player: Player!
     var tracks: NSMutableArray!
     
+    //PDAlert, should have blank spaces in array open for bonus tracks? Check swipe if bonus is open then move to new index
     let horizontalPositions = [CGFloat(640.0), CGFloat(512.0), CGFloat(384.0), CGFloat(256.0), CGFloat(128.0)] //Track 0, 1, 2, 3, 4
     var tempSwitchButton: UIButton!
     var timeToNextCart = Int()
@@ -106,14 +107,15 @@ class HorizontalScene: SKScene {
         /* Called before each frame is rendered */
         updatePositions()
         
+        //PDAlert: VIEW IS REMOVED
         if timeToNextCart == 0 { //Add Cart
             addCartHor()
-            timeToNextCart = 30
+            timeToNextCart = 60
         }
         
         if timeToNextViewCrystal == 0 { // add crystal
             addViewCrystal()
-            timeToNextViewCrystal = 100
+            timeToNextViewCrystal = 200
         }
 
 
@@ -210,11 +212,11 @@ class HorizontalScene: SKScene {
         //PDAlert: Cart z's based on track pos
         //Randomly generate cart ID
         let randCart = Int(rand() % 3)
-        let cartVelocity = CGFloat((rand() % 2) + 3)
-        let cart = Cart(velocity: cartVelocity, id: randCart, scene: 0)
+        let cart = Cart(id: randCart, scene: 0)
 
         cart.size = cart.horSize
         let trackPos = Int(rand() % 5)
+        cart.zPosition = CGFloat(trackPos)
         //PDAlert: Has thrown an error if switching via button
         let actualY = self.view!.frame.height - CGFloat((trackPos + 1) * 128) + cart.size.height / 4
         cart.trackPos = trackPos
@@ -242,6 +244,7 @@ class HorizontalScene: SKScene {
         let playerBack = player.position.x - player.size.width / 2
         for cart in carts {
             let thisCart = cart as! Cart
+            //PDAlert
             thisCart.position.x -= thisCart.velocity
             if thisCart.position.x < -thisCart.size.width {
                 thisCart.removeFromParent()

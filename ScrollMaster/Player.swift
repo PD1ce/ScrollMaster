@@ -19,7 +19,7 @@ class Player : SKSpriteNode {
     
     init() {
         //super.init(imageNamed: imageNamed)
-        let texture = SKTexture(imageNamed: "minecartHor")
+        let texture = SKTexture(imageNamed: "playerCar")
         super.init(texture: texture, color: UIColor.clearColor(), size: texture.size())
         pos = 2
         self.zPosition = -1
