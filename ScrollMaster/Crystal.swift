@@ -19,10 +19,12 @@ class Crystal : SKSpriteNode {
     var horSize: CGSize!
     var topDownSize: CGSize!
     var frontSize: CGSize!
+    var invincibilitySize: CGSize!
     
     var horTexture: SKTexture!
     var topDownTexture: SKTexture!
     var frontTexture: SKTexture!
+    var invincibilityTexture: SKTexture!
     
     init(velocity: CGFloat, id: Int, scene: Int) {
         //super.init(imageNamed: imageNamed)
@@ -33,17 +35,21 @@ class Crystal : SKSpriteNode {
         horSize = CGSize(width: 64, height: 64)
         topDownSize = CGSize(width: 64, height: 64)
         frontSize = CGSize(width: 64, height: 64)
-        horTexture = SKTexture(imageNamed: "viewCrystal")
-        topDownTexture = SKTexture(imageNamed: "viewCrystal")
-        frontTexture = SKTexture(imageNamed: "viewCrystal")
+        invincibilitySize = CGSize(width: 64, height: 64)
+        horTexture = SKTexture(imageNamed: "horCrystal")
+        topDownTexture = SKTexture(imageNamed: "topDownCrystal")
+        frontTexture = SKTexture(imageNamed: "frontCrystal")
+        invincibilityTexture = SKTexture(imageNamed: "invincibilityCrystal")
         
-        switch scene {
-            case 0:
+        switch id {
+            case 0...2:
                 texture = horTexture
-            case 1:
+            case 3...5:
                 texture = topDownTexture
-            case 2:
+            case 6...8:
                 texture = frontTexture
+            case 9:
+                texture = invincibilityTexture
             default:
                 texture = horTexture
         }
